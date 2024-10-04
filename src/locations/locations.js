@@ -1,9 +1,14 @@
 import { createClient } from '@supabase/supabase-js';
 
-const supabaseUrl = 'https://dxrzqbaihyuqsyvwilwp.supabase.co';
-const supabaseServiceRoleKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImR4cnpxYmFhaHl1cXN5dndpbHdwIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTcyODAyOTQxNywiZXhwIjoyMDQzNjA1NDE3fQ.PtdhjKi_fq9Rq87k_IrBInCbZIGouZUjldmMlL7CuQo';
+const supabaseUrl = import.meta.env.VITE_SUPABASE_URL || 'https://dxrzqbaihyuqsyvwilwp.supabase.co';
+const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImR4cnpxYmFhaHl1cXN5dndpbHdwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjgwMjk0MTcsImV4cCI6MjA0MzYwNTQxN30.60R1sGHG73oS1n25bRuJweJ3odiQQEouIgwovJwCmGw';
 
-const supabase = createClient(supabaseUrl, supabaseServiceRoleKey);
+if (!supabaseUrl || !supabaseAnonKey) {
+  console.error('Supabase environment variables not set.');
+  throw new Error('Supabase environment variables not set.');
+}
+
+const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
 export const getLocations = async () => {
   try {
@@ -20,7 +25,7 @@ export const getLocations = async () => {
       throw new Error('Supabase returned invalid data.');
     }
 
-    return data.map((location) => ({ ...location, id: location.ID })); // Map to add id field
+    return data.map((location) => ({ ...location, id: location.ID }));
   } catch (error) {
     console.error('Error in getLocations:', error);
     return [];
