@@ -18,14 +18,16 @@ export const getLocations = async () => {
 
     if (error) {
       console.error('Error fetching locations:', error);
-      throw new Error(`Supabase error: ${error.message}`);
+      throw new Error(`Supabase error: ${error.message} - ${error.details}`); // More detailed error message
     }
 
     if (!data || !Array.isArray(data)) {
+      console.error('Invalid data received from Supabase:', data);
       throw new Error('Supabase returned invalid data.');
     }
 
-    return data.map((location) => ({ ...location, id: location.ID }));
+    // More robust ID handling - using Supabase's ID if available, otherwise generating one
+    return data.map((location) => ({ ...location, id: location.id || location.ID || crypto.randomUUID() }));
   } catch (error) {
     console.error('Error in getLocations:', error);
     return [];
