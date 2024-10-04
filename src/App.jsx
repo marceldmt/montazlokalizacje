@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import LocationList from "./locations/LocationList";
 import LocationForm from "./locations/LocationForm";
 import locationsData from "./locations/locations";
+import './App.css'; // Added import statement
 
 export default function App() {
   const [locations, setLocations] = useState(locationsData);
