@@ -115,7 +115,7 @@ h1 {
 
 .form-container label {
   font-weight: bold;
-  margin-bottom: 10px !important; */ /* Temporarily remove margin-bottom for testing */
+  margin-bottom: 10px;
 }
 
 .form-container input {
@@ -156,5 +156,5 @@ h1 {
 
 /* Override Replit's default styles for form labels */
 .form-container > div > label { /* More specific selector */
-  margin-bottom: 1.5rem !important; /* Adjust the value as needed */
+  margin-bottom: 0.5rem !important; /* Adjusted value for better spacing */
 }
