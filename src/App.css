@@ -9,6 +9,7 @@ body {
   flex-direction: column;
   align-items: center;
   min-height: 100vh;
+  background-color: lightblue; /* Added test */
 }
 
 h1 {
