@@ -6,16 +6,21 @@ const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYm
 const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
 export const getLocations = async () => {
-  const { data, error } = await supabase
-    .from('Lokalizacje')
-    .select('*');
+  try {
+    const { data, error } = await supabase
+      .from('Lokalizacje')
+      .select('*');
 
-  if (error) {
-    console.error('Error fetching locations:', error);
-    return [];
+    if (error) {
+      console.error('Error fetching locations:', error);
+      throw error; // Re-throw the error to be caught in App.jsx
+    }
+
+    return data;
+  } catch (error) {
+    console.error('Error in getLocations:', error);
+    return []; // Return an empty array if there's an error
   }
-
-  return data;
 };
 
 export default getLocations;
