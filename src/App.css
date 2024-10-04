@@ -1,0 +1,160 @@
+/* src/App.css */
+/* General Styles */
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+}
+
+h1 {
+  color: #333;
+  font-size: 2.5rem;
+  margin: 2rem 0 1rem 0; /* Adjust top and bottom margins */
+  text-align: center;
+}
+
+.container {
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 2rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin: 2rem 0;
+  width: 80%;
+  max-width: 800px;
+  display: flex;
+  flex-direction: column; /* Added */
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+/* Search Bar */
+.search-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.search-container input {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 0.8rem;
+  flex: 1;
+  margin-right: 1rem;
+}
+
+.search-container button {
+  background-color: #333;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 0.8rem 1.2rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.search-container button:hover {
+  background-color: #555;
+}
+
+.content {
+  display: flex;
+  gap: 2rem;
+  width: 100%; /* Adjust width as needed */
+}
+
+.location-list-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column; /* Stack items vertically */
+}
+
+.location-list {
+  list-style: none;
+  padding: 0;
+}
+
+.location-list li {
+  background-color: #fff;
+  border-radius: 4px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+/* Location Details */
+.location-details h3 {
+  margin-top: 0;
+}
+
+.location-details p {
+  margin: 0.5rem 0;
+}
+
+/* Form */
+.form-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 2rem; /* Add padding to the form container */
+  border: 1px solid #ccc; /* Add a border for visual separation */
+  border-radius: 8px; /* Round the corners */
+  margin-bottom: 2rem; /* Add some space between the form and the content */
+  width: 30%;
+  min-width: 250px; /* Set a minimum width for the form */
+}
+
+.form-container label {
+  font-weight: bold;
+  margin-bottom: 10px !important; */ /* Temporarily remove margin-bottom for testing */
+}
+
+.form-container input {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 0.8rem;
+  width: 100%; /* Make inputs take up full width */
+}
+
+.form-container button {
+  background-color: #4CAF50;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 0.8rem 1.2rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.form-container button:hover {
+  background-color: #45a049;
+}
+
+.form-container button[type="button"] {
+  background-color: #f44336;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 0.8rem 1.2rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-top: 1rem; /* Add some space between the buttons */
+}
+
+.form-container button[type="button"]:hover {
+  background-color: #d32f2f;
+}
+
+/* Override Replit's default styles for form labels */
+.form-container > div > label { /* More specific selector */
+  margin-bottom: 1.5rem !important; /* Adjust the value as needed */
+}
