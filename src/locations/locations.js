@@ -1,9 +1,9 @@
 import { createClient } from '@supabase/supabase-js';
 
 const supabaseUrl = 'https://dxrzqbaihyuqsyvwilwp.supabase.co';
-const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImR4cnpxYmFhaHl1cXN5dndpbHdwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjgwMjk0MTcsImV4cCI6MjA0MzYwNTQxN30.60R1sGHG73oS1n25bRuJweJ3odiQQEouIgwovJwCmGw';
+const supabaseServiceRoleKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImR4cnpxYmFhaHl1cXN5dndpbHdwIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTcyODAyOTQxNywiZXhwIjoyMDQzNjA1NDE3fQ.PtdhjKi_fq9Rq87k_IrBInCbZIGouZUjldmMlL7CuQo';
 
-const supabase = createClient(supabaseUrl, supabaseAnonKey);
+const supabase = createClient(supabaseUrl, supabaseServiceRoleKey);
 
 export const getLocations = async () => {
   try {
@@ -13,13 +13,17 @@ export const getLocations = async () => {
 
     if (error) {
       console.error('Error fetching locations:', error);
-      throw error; // Re-throw the error to be caught in App.jsx
+      throw new Error(`Supabase error: ${error.message}`);
     }
 
-    return data;
+    if (!data || !Array.isArray(data)) {
+      throw new Error('Supabase returned invalid data.');
+    }
+
+    return data.map((location) => ({ ...location, id: location.ID })); // Map to add id field
   } catch (error) {
     console.error('Error in getLocations:', error);
-    return []; // Return an empty array if there's an error
+    return [];
   }
 };
 
